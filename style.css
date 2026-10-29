@@ -369,6 +369,27 @@ nav a.nav-owner { color: var(--accent); }
 .o-table .muted { color: var(--muted); }
 .o-table tbody tr:hover td { background: var(--ink-2); }
 
+/* account settings page */
+.set-page h1 { margin-bottom: 56px; }
+.set-page .kicker a { color: var(--muted); }
+.set-page .kicker a:hover { color: var(--accent); }
+.set-row { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 56px; padding: 32px 0 36px; border-top: 1px solid var(--line); }
+.set-row:first-of-type { border-top-color: var(--paper); }
+.set-label h2 { font: 600 17px var(--sans); margin: 0 0 8px; }
+.set-label p { color: var(--muted); font-size: 14px; margin: 0; max-width: 32ch; }
+.set-facts { grid-template-columns: 170px 1fr; margin: 0; border-top: 0; }
+.set-facts dt { padding-right: 12px; }
+.set-facts dt:first-of-type, .set-facts dt:first-of-type + dd { padding-top: 0; }
+.set-check { display: flex; gap: 12px; align-items: center; color: var(--paper); font-size: 15px; cursor: pointer; }
+.set-check input { width: 18px; height: 18px; margin: 0; accent-color: var(--accent); }
+.set-buttons { display: flex; gap: 12px; flex-wrap: wrap; align-items: start; }
+.set-danger h2 { color: var(--accent); }
+.set-danger .form { max-width: 360px; }
+.btn-danger { background: transparent; color: var(--accent); border: 1px solid var(--accent); cursor: pointer; justify-self: start; }
+.btn-danger:hover { background: var(--accent); color: var(--ink); }
+.btn-danger:disabled:hover { background: transparent; }
+.acct-settings-link { margin-top: 20px; font-size: 14px; }
+
 .o-announce { margin-top: 96px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 320px); gap: 56px; }
 .o-announce .form { max-width: 640px; }
 .o-actions { display: flex; gap: 12px; flex-wrap: wrap; }
@@ -391,4 +412,6 @@ nav a.nav-owner { color: var(--accent); }
   .o-search { width: 100%; }
   .o-row { grid-template-columns: 1fr; }
   .o-announce { grid-template-columns: 1fr; gap: 40px; }
+  .set-row { grid-template-columns: 1fr; gap: 20px; }
+  .set-facts { grid-template-columns: 130px 1fr; }
 }

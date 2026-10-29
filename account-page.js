@@ -128,9 +128,6 @@
     $("card-since").textContent = new Date(p.created_at).toLocaleDateString("en-US", { month: "short", year: "numeric" });
     $("zag-balance").textContent = ZF.fmt(p.zags);
     $("zag-worth").textContent = money(Math.floor(p.zags / 1000) * 100);
-    $("set-email").textContent = ZF.user.email;
-    $("set-news").checked = p.email_news !== false;
-    if (document.activeElement !== $("form-name").name) $("form-name").name.value = p.display_name || "";
 
     const done = p.last_checkin === utcToday();
     const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
@@ -215,35 +212,6 @@
     say("redeem-msg", "Your code: " + data.code + ". It's saved below too.");
     await ZF.refresh();
   }
-
-  $("form-name").onsubmit = async function (e) {
-    e.preventDefault();
-    const name = e.target.name.value.trim();
-    const { error } = await sb.from("profiles").update({ display_name: name }).eq("id", ZF.user.id);
-    if (error) return say("name-msg", /check/i.test(error.message) ? "Names need 2 to 24 characters." : nice(error), true);
-    say("name-msg", "Saved.");
-    ZF.refresh();
-  };
-
-  $("form-password").onsubmit = async function (e) {
-    e.preventDefault();
-    const f = e.target;
-    busy(f, true);
-    const { error } = await sb.auth.updateUser({ password: f.password.value });
-    busy(f, false);
-    if (error) return say("password-msg", nice(error), true);
-    f.reset();
-    say("password-msg", "Password changed.");
-  };
-
-  $("set-news").onchange = async function (e) {
-    const on = e.target.checked;
-    const { error } = await sb.from("profiles").update({ email_news: on }).eq("id", ZF.user.id);
-    if (error) { e.target.checked = !on; return say("news-msg", nice(error), true); }
-    say("news-msg", on ? "You'll get news emails." : "No more news emails. Receipts still arrive.");
-  };
-
-  $("logout").onclick = async function () { await sb.auth.signOut(); };
 
   // ---------------- which view ----------------
   ZF.onChange(function () {

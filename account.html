@@ -127,6 +127,7 @@
           <p class="kicker">Your Zags</p>
           <div class="balance-num"><span id="zag-balance">0</span><span class="unit">Zags</span></div>
           <p class="balance-sub">Worth <b id="zag-worth">$0</b> off games.</p>
+          <p class="acct-settings-link"><a href="settings.html">Account settings</a></p>
         </div>
       </div>
 
@@ -153,24 +154,6 @@
         <ul class="ledger" id="ledger"></ul>
       </section>
 
-      <section class="panel full settings">
-        <div class="section-head"><h2>Settings</h2><span id="set-email"></span></div>
-        <form id="form-name" class="form inline">
-          <label>Zig name
-            <input name="name" required minlength="2" maxlength="24"></label>
-          <button class="btn btn-ghost" type="submit">Save name</button>
-        </form>
-        <p id="name-msg" class="msg" role="status"></p>
-        <form id="form-password" class="form inline">
-          <label>New password <span class="hint">at least 8 characters</span>
-            <input name="password" type="password" required minlength="8" autocomplete="new-password"></label>
-          <button class="btn btn-ghost" type="submit">Change password</button>
-        </form>
-        <p id="password-msg" class="msg" role="status"></p>
-        <label class="check"><input type="checkbox" id="set-news"> Email me about new games and sales</label>
-        <p id="news-msg" class="msg" role="status"></p>
-        <button type="button" class="btn btn-ghost" id="logout">Log out</button>
-      </section>
     </section>
   </main>
 

@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Account settings — ZiggFaide</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#14120f">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="brand/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="brand/apple-touch-icon.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap top-row">
+      <a class="brand" href="./" aria-label="ZiggFaide home">
+        <svg class="mark" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="4"/><path d="M11 12H33L19 24H31L17 36H37"/></svg>
+        <span>ZiggFaide</span>
+      </a>
+      <nav>
+        <a href="./#catalogue">Games</a>
+        <a href="./#help">Help</a>
+        <a id="nav-account" class="nav-account" href="account.html">Log in</a>
+        <a class="cart-link" href="./#cart">Cart</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap acct set-page">
+
+    <section id="s-out" hidden>
+      <p class="kicker">Account</p>
+      <h1>Log in to see your settings.</h1>
+      <p class="lede"><a href="account.html">Log in or join</a></p>
+    </section>
+
+    <section id="s-gone" hidden>
+      <p class="kicker">Account deleted</p>
+      <h1>Your account is gone.</h1>
+      <p class="lede">We deleted your Zig account, Zags, history and codes, and sent a confirmation email. Games you bought still work. You're welcome back any time.</p>
+    </section>
+
+    <section id="s-main" hidden>
+      <p class="kicker"><a href="account.html">Your Zags</a> <span class="rule"></span> Settings</p>
+      <h1>Account settings.</h1>
+
+      <div class="set-row">
+        <div class="set-label"><h2>Your details</h2><p>What ZiggFaide has on file for you.</p></div>
+        <dl class="specs set-facts" id="s-facts"></dl>
+      </div>
+
+      <div class="set-row">
+        <div class="set-label"><h2>Zig name</h2><p>Shown on your Zig card. 2 to 24 characters.</p></div>
+        <div>
+          <form id="f-name" class="form inline">
+            <label>Zig name<input name="name" required minlength="2" maxlength="24"></label>
+            <button class="btn btn-ghost" type="submit">Save name</button>
+          </form>
+          <p id="m-name" class="msg" role="status"></p>
+        </div>
+      </div>
+
+      <div class="set-row">
+        <div class="set-label"><h2>Email address</h2><p>We send a confirmation link to both your old and new address. The change happens once you've clicked both.</p></div>
+        <div>
+          <form id="f-email" class="form inline">
+            <label>New email<input name="email" type="email" required autocomplete="email"></label>
+            <button class="btn btn-ghost" type="submit">Change email</button>
+          </form>
+          <p id="m-email" class="msg" role="status"></p>
+        </div>
+      </div>
+
+      <div class="set-row">
+        <div class="set-label"><h2>Password</h2><p>At least 8 characters.</p></div>
+        <div>
+          <form id="f-password" class="form inline">
+            <label>New password<input name="password" type="password" required minlength="8" autocomplete="new-password"></label>
+            <button class="btn btn-ghost" type="submit">Change password</button>
+          </form>
+          <p id="m-password" class="msg" role="status"></p>
+        </div>
+      </div>
+
+      <div class="set-row">
+        <div class="set-label"><h2>Emails</h2><p>Receipts and account emails always arrive. News is optional.</p></div>
+        <div>
+          <label class="set-check"><input type="checkbox" id="f-news"> Email me about new games and sales</label>
+          <p id="m-news" class="msg" role="status"></p>
+        </div>
+      </div>
+
+      <div class="set-row">
+        <div class="set-label"><h2>Log out</h2><p>"Everywhere" also logs out your other devices and browsers.</p></div>
+        <div class="set-buttons">
+          <button type="button" class="btn btn-ghost" id="b-logout">Log out</button>
+          <button type="button" class="btn btn-ghost" id="b-logout-all">Log out everywhere</button>
+        </div>
+      </div>
+
+      <div class="set-row set-danger">
+        <div class="set-label"><h2>Delete account</h2><p>Permanent. Your Zags, history and discount codes are erased and can't be brought back. Games you bought keep working.</p></div>
+        <div>
+          <p id="d-owner" class="panel-text" hidden>The Owner account can't be deleted from the site.</p>
+          <form id="f-delete" class="form">
+            <label>Your password<input name="password" type="password" required autocomplete="current-password"></label>
+            <label>Type DELETE to confirm<input name="confirm" required autocomplete="off" spellcheck="false"></label>
+            <button class="btn btn-danger" type="submit">Delete my account</button>
+          </form>
+          <p id="m-delete" class="msg" role="status"></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap">
+      <div class="foot-row">
+        <span>&copy; 2026 ZiggFaide</span>
+        <span class="foot-links"><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="mailto:ziggfaide@gmail.com">ziggfaide@gmail.com</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js"></script>
+  <script src="config.js"></script>
+  <script src="account.js"></script>
+  <script src="settings.js"></script>
+</body>
+</html>
