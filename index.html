@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ZiggFaide Games</title>
+  <meta name="description" content="Small games by ZiggFaide. Buy once, download, keep forever.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap top-row">
+      <a class="brand" href="#">ZiggFaide</a>
+      <nav>
+        <a href="#games">Games</a>
+        <a href="#faq">Help</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="intro wrap">
+      <h1>Small games, made by one person.</h1>
+      <p>Pay once, download, and keep it. No accounts or subscriptions.</p>
+    </section>
+
+    <section id="games" class="wrap">
+      <h2 class="section-title">Games</h2>
+      <div id="game-list"></div>
+    </section>
+
+    <section id="faq" class="wrap faq">
+      <h2 class="section-title">Help</h2>
+      <dl>
+        <dt>How do I get my game after paying?</dt>
+        <dd>Right after checkout you get a download link on screen and by email. The email also has your receipt.</dd>
+        <dt>I lost my download link.</dt>
+        <dd>Search your inbox for the receipt from Lemon Squeezy. It has the link, and you can download again any time.</dd>
+        <dt>Who handles payment?</dt>
+        <dd>Payments go through Lemon Squeezy. They take card, PayPal and Apple Pay, and handle sales tax. Your card details never reach this site.</dd>
+        <dt>Refunds</dt>
+        <dd>If a game won't run on your computer, reply to your receipt email within 14 days for a refund.</dd>
+      </dl>
+    </section>
+  </main>
+
+  <footer class="wrap foot">
+    <span>&copy; <span id="year"></span> ZiggFaide</span>
+  </footer>
+
+  <dialog id="viewer">
+    <img alt="">
+    <button type="button" class="close" aria-label="Close">Close</button>
+  </dialog>
+
+  <script src="games.js"></script>
+  <script src="main.js"></script>
+  <script src="https://app.lemonsqueezy.com/js/lemon.js" defer></script>
+</body>
+</html>
