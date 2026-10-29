@@ -94,6 +94,14 @@ nav a:hover { color: var(--text); }
 .faq dt { font-weight: 600; margin-top: 20px; }
 .faq dd { margin: 4px 0 0; color: var(--muted); }
 
+.foot { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.foot-links a { color: var(--muted); margin-left: 20px; }
+.foot-links a:first-child { margin-left: 0; }
+.page { padding-top: 48px; padding-bottom: 48px; max-width: 760px; }
+.page h1 { font: 400 36px/1.2 var(--serif); margin: 0 0 4px; }
+.page h2 { font: 600 18px var(--sans); margin: 32px 0 8px; }
+.page p { color: var(--muted); margin: 0; }
+.updated { font-size: 14px; }
 .foot { border-top: 1px solid var(--line); padding-top: 20px; padding-bottom: 32px; color: var(--muted); font-size: 14px; }
 
 /* screenshot viewer */

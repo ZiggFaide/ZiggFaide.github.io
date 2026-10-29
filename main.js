@@ -22,8 +22,9 @@
       a.href = game.checkout + (game.checkout.includes("?") ? "&" : "?") + "embed=1&media=0";
       return a;
     }
-    const s = el("span", "btn btn-off", game.status === "soon" ? "Coming soon" : "Available soon");
-    return s;
+    if (game.status === "soon") return el("span", "btn btn-off", "Coming soon");
+    // price is known but checkout isn't connected yet
+    return el("span", "btn btn-off", game.price + " \u00b7 Available soon");
   }
 
   (window.GAMES || []).forEach(function (game) {
