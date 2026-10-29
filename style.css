@@ -415,3 +415,5 @@ nav a.nav-owner { color: var(--accent); }
   .set-row { grid-template-columns: 1fr; gap: 20px; }
   .set-facts { grid-template-columns: 130px 1fr; }
 }
+
+@media (max-width: 560px) { nav #nav-settings { display: none; } }
