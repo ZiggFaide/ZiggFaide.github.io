@@ -26,7 +26,7 @@ window.GAMES = [
     platforms: "Windows · Linux",
     price: "$4.99",
     status: "available",
-    checkout: "",
+    checkout: "https://ziggfaide-games.lemonsqueezy.com/checkout/buy/e20fea38-276d-4d46-82be-d5707ce8ea5b",
     cover: "games/moonherd/title.png",
     screenshots: [
       "games/moonherd/title.png",
