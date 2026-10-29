@@ -217,8 +217,13 @@
     const dots = el("div", "faide-msg from-faide typing");
     dots.innerHTML = '<span class="faide-msg-avatar">' + mascot("tiny") + '</span><div class="faide-bubble"><i></i><i></i><i></i></div>';
     log.appendChild(dots); log.scrollTop = log.scrollHeight;
+    const slow = setTimeout(function () {
+      dots.appendChild(el("span", "faide-slow", "Still thinking… the AI is busy right now."));
+      log.scrollTop = log.scrollHeight;
+    }, 8000);
 
     const { data, error } = await ZF.client.functions.invoke("faide", { body: { action: "chat", messages: plain() } });
+    clearTimeout(slow);
     dots.remove();
     root.classList.remove("thinking");
     busy = false;
