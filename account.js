@@ -35,7 +35,19 @@
     }
     ZF.loaded = true;
     paintNav();
+    askWelcome();
     ZF.listeners.forEach(function (fn) { fn(ZF); });
+  }
+
+  // The server sends the welcome email only once per Zig, so this is safe to repeat.
+  function askWelcome() {
+    const u = ZF.user;
+    if (!u || !u.email_confirmed_at || !ZF.profile) return;
+    const key = "zf-welcome-" + u.id;
+    try { if (localStorage.getItem(key)) return; } catch (e) { /* storage off: server still guards it */ }
+    ZF.client.functions.invoke("mail", { body: { action: "welcome" } }).then(function (r) {
+      if (!r.error) { try { localStorage.setItem(key, "1"); } catch (e) { /* ignore */ } }
+    });
   }
 
   function paintNav() {

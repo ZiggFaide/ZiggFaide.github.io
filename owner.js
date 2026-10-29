@@ -125,6 +125,49 @@
     say("m-reset-msg", "Temporary password: " + data.password);
   };
 
+  // ---------------- announcements ----------------
+  let recipients = 0;
+  async function loadAnnouncements() {
+    const [c, a] = await Promise.all([
+      ZF.client.rpc("news_recipient_count"),
+      ZF.client.from("announcements").select("subject, sent_to, created_at").order("created_at", { ascending: false }).limit(20)
+    ]);
+    recipients = c.data || 0;
+    $("a-count").textContent = ZF.fmt(recipients) + (recipients === 1 ? " Zig gets news" : " Zigs get news");
+    $("a-send").textContent = "Send to " + ZF.fmt(recipients) + (recipients === 1 ? " Zig" : " Zigs");
+    const ul = $("a-sent"); ul.textContent = "";
+    (a.data || []).forEach(function (row) {
+      const li = el("li");
+      li.appendChild(el("span", "l-date", day(row.created_at)));
+      li.appendChild(el("span", "l-what", row.subject));
+      li.appendChild(el("span", "l-amt neg", ZF.fmt(row.sent_to)));
+      ul.appendChild(li);
+    });
+    if (!ul.children.length) ul.appendChild(el("li", "empty", "Nothing sent yet."));
+  }
+
+  async function announce(test) {
+    const f = $("a-form");
+    if (!f.reportValidity()) return;
+    if (!test && !confirm("Email \"" + f.subject.value.trim() + "\" to " + ZF.fmt(recipients) + " Zigs? This can't be undone.")) return;
+    $("a-test").disabled = $("a-send").disabled = true;
+    say("a-msg", test ? "Sending a test to " + ZF.user.email + "…" : "Sending… keep this page open.");
+    const { data, error } = await ZF.client.functions.invoke("admin-tools", {
+      body: { action: "announce", subject: f.subject.value, body: f.body.value, test: test }
+    });
+    $("a-test").disabled = $("a-send").disabled = false;
+    if (error) {
+      let msg = "Couldn't send.";
+      try { msg = (await error.context.json()).error || msg; } catch (x) { /* keep default */ }
+      return say("a-msg", msg, true);
+    }
+    const failed = data.failed && data.failed.length ? " Failed: " + data.failed.join(", ") : "";
+    say("a-msg", (test ? "Test sent to " + ZF.user.email + "." : "Sent to " + ZF.fmt(data.sent) + " Zigs.") + failed, !!failed);
+    if (!test) { f.reset(); loadAnnouncements(); }
+  }
+  $("a-test").onclick = function () { announce(true); };
+  $("a-form").onsubmit = function (e) { e.preventDefault(); announce(false); };
+
   // ---------------- who can see this ----------------
   let started = false;
   ZF.onChange(function () {
@@ -132,6 +175,6 @@
     const ok = ZF.isOwner();
     $("o-denied").hidden = ok;
     $("o-main").hidden = !ok;
-    if (ok && !started) { started = true; load(); }
+    if (ok && !started) { started = true; load(); loadAnnouncements(); }
   });
 })();

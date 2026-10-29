@@ -129,6 +129,7 @@
     $("zag-balance").textContent = ZF.fmt(p.zags);
     $("zag-worth").textContent = money(Math.floor(p.zags / 1000) * 100);
     $("set-email").textContent = ZF.user.email;
+    $("set-news").checked = p.email_news !== false;
     if (document.activeElement !== $("form-name").name) $("form-name").name.value = p.display_name || "";
 
     const done = p.last_checkin === utcToday();
@@ -233,6 +234,13 @@
     if (error) return say("password-msg", nice(error), true);
     f.reset();
     say("password-msg", "Password changed.");
+  };
+
+  $("set-news").onchange = async function (e) {
+    const on = e.target.checked;
+    const { error } = await sb.from("profiles").update({ email_news: on }).eq("id", ZF.user.id);
+    if (error) { e.target.checked = !on; return say("news-msg", nice(error), true); }
+    say("news-msg", on ? "You'll get news emails." : "No more news emails. Receipts still arrive.");
   };
 
   $("logout").onclick = async function () { await sb.auth.signOut(); };

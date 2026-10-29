@@ -241,7 +241,11 @@ nav a.nav-account { color: var(--paper); display: inline-flex; gap: 10px; align-
   font: 16px var(--sans); color: var(--paper); background: var(--ink); border: 1px solid var(--line);
   padding: 12px 14px; border-radius: 0; width: 100%;
 }
-.form input:focus { outline: none; border-color: var(--accent); }
+.form textarea {
+  font: 16px/1.55 var(--sans); color: var(--paper); background: var(--ink); border: 1px solid var(--line);
+  padding: 12px 14px; border-radius: 0; width: 100%; resize: vertical; min-height: 200px;
+}
+.form input:focus, .form textarea:focus { outline: none; border-color: var(--accent); }
 .form .check { grid-template-columns: 18px 1fr; gap: 12px; font-weight: 400; color: var(--muted); align-items: start; }
 .form .check input { width: 18px; height: 18px; margin: 2px 0 0; accent-color: var(--accent); }
 .form-intro { margin: 0; color: var(--muted); font-size: 15px; }
@@ -307,6 +311,8 @@ nav a.nav-account { color: var(--paper); display: inline-flex; gap: 10px; align-
 .l-amt.neg { color: var(--muted); }
 .settings .btn-ghost { cursor: pointer; }
 .settings #logout { margin-top: 28px; }
+.settings > .check { display: flex; gap: 12px; align-items: center; margin-top: 28px; color: var(--muted); font-size: 15px; cursor: pointer; }
+.settings > .check input { width: 18px; height: 18px; margin: 0; accent-color: var(--accent); }
 
 @media (max-width: 860px) {
   .acct { padding-top: 48px; }
@@ -363,6 +369,12 @@ nav a.nav-owner { color: var(--accent); }
 .o-table .muted { color: var(--muted); }
 .o-table tbody tr:hover td { background: var(--ink-2); }
 
+.o-announce { margin-top: 96px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 320px); gap: 56px; }
+.o-announce .form { max-width: 640px; }
+.o-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.o-actions .btn { cursor: pointer; }
+.o-sent li { grid-template-columns: 110px 1fr auto; font-size: 14px; }
+
 .o-dialog { margin: 0 0 0 auto; height: 100vh; max-height: 100vh; width: min(560px, 100vw); max-width: 100vw; border: 0; border-left: 1px solid var(--line); background: var(--ink); color: var(--paper); padding: 0; }
 .o-dialog-body { padding: 8px 24px 40px; overflow-y: auto; }
 .o-dialog h3 { font: 600 16px var(--sans); margin: 36px 0 12px; }
@@ -378,4 +390,5 @@ nav a.nav-owner { color: var(--accent); }
   .owner-page .section-head { flex-wrap: wrap; gap: 12px; }
   .o-search { width: 100%; }
   .o-row { grid-template-columns: 1fr; }
+  .o-announce { grid-template-columns: 1fr; gap: 40px; }
 }

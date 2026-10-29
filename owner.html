@@ -57,6 +57,28 @@
         </table>
       </div>
       <p id="o-msg" class="msg" role="status"></p>
+
+      <div class="o-announce">
+        <section>
+          <div class="section-head"><h2>Email the Zigs</h2><span id="a-count"></span></div>
+          <form id="a-form" class="form">
+            <label>Subject
+              <input name="subject" required minlength="3" maxlength="120" placeholder="Moonherd is 20% off this weekend"></label>
+            <label>Message <span class="hint">plain text; leave a blank line between paragraphs</span>
+              <textarea name="body" required minlength="10" maxlength="5000"></textarea></label>
+            <div class="o-actions">
+              <button class="btn btn-ghost" type="button" id="a-test">Send test to me</button>
+              <button class="btn" type="submit" id="a-send">Send to all Zigs</button>
+            </div>
+          </form>
+          <p id="a-msg" class="msg" role="status"></p>
+          <p class="panel-text small">Goes to Zigs with a confirmed email who haven't turned news off. Every email has a "Stop news emails" link. Sent from ziggfaide@gmail.com, which allows about 500 emails a day.</p>
+        </section>
+        <section>
+          <div class="section-head"><h2>Sent</h2></div>
+          <ul class="ledger o-sent" id="a-sent"></ul>
+        </section>
+      </div>
     </section>
   </main>
 
