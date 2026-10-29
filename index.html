@@ -28,6 +28,7 @@
         <a href="#catalogue">Games</a>
         <a href="#about">About</a>
         <a href="#help">Help</a>
+        <button type="button" class="cart-link" id="cart-open">Cart <span id="cart-count">0</span></button>
       </nav>
     </div>
   </header>
@@ -95,6 +96,21 @@
       </div>
     </div>
   </footer>
+
+  <dialog id="cart" class="cart" aria-labelledby="cart-title">
+    <div class="cart-head">
+      <h2 id="cart-title">Cart</h2>
+      <button type="button" class="cart-close" id="cart-close">Close</button>
+    </div>
+    <ul id="cart-items" class="cart-items"></ul>
+    <p id="cart-empty" class="cart-empty">Your cart is empty.</p>
+    <div id="cart-foot" class="cart-foot">
+      <div class="cart-total"><span>Total</span><span id="cart-total"></span></div>
+      <p id="cart-note" class="cart-note"></p>
+      <button type="button" class="btn btn-wide" id="cart-checkout">Checkout</button>
+      <p class="cart-secure">Secure payment by Lemon Squeezy. Sales tax is added at checkout where it applies.</p>
+    </div>
+  </dialog>
 
   <dialog id="viewer">
     <img alt="">
