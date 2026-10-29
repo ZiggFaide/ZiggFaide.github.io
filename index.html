@@ -3,57 +3,102 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ZiggFaide Games</title>
-  <meta name="description" content="Small games by ZiggFaide. Buy once, download, keep forever.">
+  <title>ZiggFaide — Independent Games</title>
+  <meta name="description" content="Small games made by one person. Pay once, download, keep it.">
+  <meta property="og:title" content="ZiggFaide — Independent Games">
+  <meta property="og:description" content="Small games made by one person. Pay once, download, keep it.">
+  <meta property="og:image" content="https://ziggfaide.github.io/brand/og.png">
+  <meta property="og:url" content="https://ziggfaide.github.io/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#14120f">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="brand/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="brand/apple-touch-icon.png">
+  <link rel="preload" href="fonts/fraunces-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header class="top">
     <div class="wrap top-row">
-      <a class="brand" href="#">ZiggFaide</a>
+      <a class="brand" href="./" aria-label="ZiggFaide home">
+        <svg class="mark" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="4"/><path d="M11 12H33L19 24H31L17 36H37"/></svg>
+        <span>ZiggFaide</span>
+      </a>
       <nav>
-        <a href="#games">Games</a>
-        <a href="#faq">Help</a>
+        <a href="#catalogue">Games</a>
+        <a href="#about">About</a>
+        <a href="#help">Help</a>
       </nav>
     </div>
   </header>
 
   <main>
-    <section class="intro wrap">
-      <h1>Small games, made by one person.</h1>
-      <p>Pay once, download, and keep it. No accounts or subscriptions.</p>
+    <section class="hero wrap">
+      <p class="kicker">Independent games <span class="rule"></span> Est. 2026</p>
+      <h1>Small games, made <em>by one person.</em></h1>
+      <p class="lede">Pay once, download, and keep it. No accounts, no ads, no subscriptions.</p>
     </section>
 
-    <section id="games" class="wrap">
-      <h2 class="section-title">Games</h2>
+    <section id="catalogue" class="wrap">
+      <div class="section-head">
+        <h2>Catalogue</h2>
+        <span id="count"></span>
+      </div>
       <div id="game-list"></div>
     </section>
 
-    <section id="faq" class="wrap faq">
-      <h2 class="section-title">Help</h2>
-      <dl>
-        <dt>How do I get my game after paying?</dt>
-        <dd>Right after checkout you get a download link on screen and by email. The email also has your receipt.</dd>
-        <dt>I lost my download link.</dt>
-        <dd>Search your inbox for the receipt from Lemon Squeezy. It has the link, and you can download again any time.</dd>
-        <dt>Who handles payment?</dt>
-        <dd>Payments go through Lemon Squeezy. They take card, PayPal and Apple Pay, and handle sales tax. Your card details never reach this site.</dd>
-        <dt>Refunds</dt>
-        <dd>If a game won't run on your computer, or you're unhappy with it, email <a href="mailto:contact.ziggfaide@proton.me">contact.ziggfaide@proton.me</a> within 14 days for a full refund. See the <a href="terms.html">terms</a>.</dd>
-        <dt>Contact</dt>
-        <dd><a href="mailto:contact.ziggfaide@proton.me">contact.ziggfaide@proton.me</a></dd>
+    <section id="about" class="wrap split">
+      <div class="section-head"><h2>About</h2></div>
+      <div class="split-body">
+        <p class="big">ZiggFaide is a one-person studio. Each game is small, built from scratch, and sold once for a fair price.</p>
+        <p>New games are added to the catalogue as they're finished. Every purchase goes straight to making the next one.</p>
+      </div>
+    </section>
+
+    <section id="help" class="wrap split">
+      <div class="section-head"><h2>Help</h2></div>
+      <dl class="faq">
+        <div>
+          <dt>How do I get my game after paying?</dt>
+          <dd>Right after checkout you get a download link on screen and by email. The email also has your receipt.</dd>
+        </div>
+        <div>
+          <dt>I lost my download link.</dt>
+          <dd>Search your inbox for the receipt from Lemon Squeezy. It has the link, and you can download again any time.</dd>
+        </div>
+        <div>
+          <dt>Who handles payment?</dt>
+          <dd>Lemon Squeezy. They take card, PayPal and Apple Pay, and handle sales tax. Your card details never reach this site.</dd>
+        </div>
+        <div>
+          <dt>Refunds</dt>
+          <dd>If a game won't run on your computer, or you're unhappy with it, email us within 14 days for a full refund. See the <a href="terms.html">terms</a>.</dd>
+        </div>
+        <div>
+          <dt>Windows says it protected my PC.</dt>
+          <dd>That appears for new games from small developers. Click <b>More info</b>, then <b>Run anyway</b>.</dd>
+        </div>
+        <div>
+          <dt>Contact</dt>
+          <dd><a href="mailto:contact.ziggfaide@proton.me">contact.ziggfaide@proton.me</a></dd>
+        </div>
       </dl>
     </section>
   </main>
 
-  <footer class="wrap foot">
-    <span>&copy; <span id="year"></span> ZiggFaide</span>
-    <span class="foot-links"><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="mailto:contact.ziggfaide@proton.me">contact.ziggfaide@proton.me</a></span>
+  <footer class="foot">
+    <div class="wrap">
+      <div class="foot-mark" aria-hidden="true">ZiggFaide</div>
+      <div class="foot-row">
+        <span>&copy; <span id="year"></span> ZiggFaide</span>
+        <span class="foot-links"><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="mailto:contact.ziggfaide@proton.me">contact.ziggfaide@proton.me</a></span>
+      </div>
+    </div>
   </footer>
 
   <dialog id="viewer">
     <img alt="">
-    <button type="button" class="close" aria-label="Close">Close</button>
+    <button type="button" class="close">Close</button>
   </dialog>
 
   <script src="games.js"></script>
