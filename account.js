@@ -10,6 +10,7 @@
     loaded: false,
     listeners: [],
     onChange: function (fn) { this.listeners.push(fn); fn(this); },
+    isOwner: function () { return !!(this.profile && this.profile.role === "owner"); },
     fmt: function (n) { return Number(n || 0).toLocaleString("en-US"); },
     memberNo: function (p) { return "Zig No. " + String(p && p.member_no || 0).padStart(4, "0"); },
     // extra checkout fields so a purchase earns Zags for the right account
@@ -52,9 +53,16 @@
       z.textContent = ZF.fmt(ZF.profile && ZF.profile.zags) + " Zags";
       link.appendChild(z);
       link.classList.add("signed-in");
+      if (ZF.isOwner() && !document.getElementById("nav-owner")) {
+        const o = document.createElement("a");
+        o.id = "nav-owner"; o.className = "nav-owner"; o.href = "owner.html"; o.textContent = "Owner";
+        link.parentNode.insertBefore(o, link);
+      }
     } else {
       link.textContent = "Log in";
       link.classList.remove("signed-in");
+      const o = document.getElementById("nav-owner");
+      if (o) o.remove();
     }
   }
 

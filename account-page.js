@@ -104,6 +104,10 @@
     signup: "Welcome bonus", checkin: "Daily check-in", purchase: "Game purchase",
     refund: "Purchase refunded", redeem: "Traded for a discount code", redeem_return: "Code failed, Zags returned"
   };
+  function label(row) {
+    if (row.reason !== "owner") return LABELS[row.reason] || row.reason;
+    return (row.amount > 0 ? "Gift from ZiggFaide" : "Adjusted by ZiggFaide") + (row.note ? ": " + row.note : "");
+  }
   const utcToday = function () { return new Date().toISOString().slice(0, 10); };
   const money = function (c) { return "$" + (c / 100).toFixed(c % 100 ? 2 : 0); };
   const day = function (d) { return new Date(d).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }); };
@@ -117,6 +121,9 @@
 
   function paintProfile(p) {
     $("card-no").textContent = ZF.memberNo(p);
+    const owner = p.role === "owner";
+    document.querySelector(".zig-card").classList.toggle("owner", owner);
+    $("card-role").hidden = !owner;
     $("card-name").textContent = p.display_name || "Unnamed Zig";
     $("card-since").textContent = new Date(p.created_at).toLocaleDateString("en-US", { month: "short", year: "numeric" });
     $("zag-balance").textContent = ZF.fmt(p.zags);
@@ -156,14 +163,14 @@
 
   async function paintLists() {
     const [led, red] = await Promise.all([
-      sb.from("zag_ledger").select("amount, reason, created_at").order("created_at", { ascending: false }).limit(50),
+      sb.from("zag_ledger").select("amount, reason, note, created_at").order("created_at", { ascending: false }).limit(50),
       sb.from("redemptions").select("code, amount_cents, expires_at, created_at").order("created_at", { ascending: false }).limit(20)
     ]);
     const ul = $("ledger"); ul.textContent = "";
     (led.data || []).forEach(function (row) {
       const li = el("li");
       li.appendChild(el("span", "l-date", day(row.created_at)));
-      li.appendChild(el("span", "l-what", LABELS[row.reason] || row.reason));
+      li.appendChild(el("span", "l-what", label(row)));
       li.appendChild(el("span", "l-amt" + (row.amount < 0 ? " neg" : ""), (row.amount > 0 ? "+" : "") + ZF.fmt(row.amount)));
       ul.appendChild(li);
     });
@@ -215,6 +222,17 @@
     if (error) return say("name-msg", /check/i.test(error.message) ? "Names need 2 to 24 characters." : nice(error), true);
     say("name-msg", "Saved.");
     ZF.refresh();
+  };
+
+  $("form-password").onsubmit = async function (e) {
+    e.preventDefault();
+    const f = e.target;
+    busy(f, true);
+    const { error } = await sb.auth.updateUser({ password: f.password.value });
+    busy(f, false);
+    if (error) return say("password-msg", nice(error), true);
+    f.reset();
+    say("password-msg", "Password changed.");
   };
 
   $("logout").onclick = async function () { await sb.auth.signOut(); };

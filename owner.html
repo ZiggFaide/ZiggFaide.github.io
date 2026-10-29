@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Owner — ZiggFaide</title>
+  <meta name="theme-color" content="#14120f">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap top-row">
+      <a class="brand" href="./" aria-label="ZiggFaide home">
+        <svg class="mark" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="4"/><path d="M11 12H33L19 24H31L17 36H37"/></svg>
+        <span>ZiggFaide</span>
+      </a>
+      <nav>
+        <a href="./#catalogue">Games</a>
+        <a id="nav-account" class="nav-account" href="account.html">Log in</a>
+        <a class="cart-link" href="./#cart">Cart</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap owner-page">
+    <section id="o-denied" hidden>
+      <p class="kicker">Owner</p>
+      <h1>This page is for the Owner.</h1>
+      <p class="lede"><a href="account.html">Go to your account</a></p>
+    </section>
+
+    <section id="o-main" hidden>
+      <p class="kicker">Owner <span class="rule"></span> Members</p>
+      <h1>The Zigs.</h1>
+
+      <div class="stats">
+        <div><span class="stat-num" id="s-members">0</span><span class="stat-label">Zigs</span></div>
+        <div><span class="stat-num" id="s-new">0</span><span class="stat-label">Joined this week</span></div>
+        <div><span class="stat-num" id="s-zags">0</span><span class="stat-label">Zags held</span></div>
+        <div><span class="stat-num" id="s-orders">0</span><span class="stat-label">Purchases</span></div>
+        <div><span class="stat-num" id="s-codes">0</span><span class="stat-label">Codes made</span></div>
+      </div>
+
+      <div class="section-head">
+        <h2>Members</h2>
+        <input id="o-search" class="o-search" type="search" placeholder="Search name or email" aria-label="Search members">
+      </div>
+
+      <div class="o-table-wrap">
+        <table class="o-table">
+          <thead>
+            <tr><th>No.</th><th>Name</th><th>Email</th><th class="num">Zags</th><th class="num">Streak</th><th class="num">Bought</th><th>Joined</th><th></th></tr>
+          </thead>
+          <tbody id="o-rows"></tbody>
+        </table>
+      </div>
+      <p id="o-msg" class="msg" role="status"></p>
+    </section>
+  </main>
+
+  <dialog id="o-member" class="o-dialog">
+    <div class="cart-head">
+      <h2 id="m-title">Zig</h2>
+      <button type="button" class="cart-close" id="m-close">Close</button>
+    </div>
+    <div class="o-dialog-body">
+      <dl class="specs" id="m-facts"></dl>
+
+      <h3>Give or take Zags</h3>
+      <form id="m-adjust" class="form">
+        <div class="o-row">
+          <label>Amount <span class="hint">use minus to take, e.g. -200</span>
+            <input name="amount" type="number" required step="1"></label>
+          <label>Note <span class="hint">the Zig sees this</span>
+            <input name="note" required minlength="2" maxlength="120" placeholder="Contest prize"></label>
+        </div>
+        <button class="btn" type="submit">Apply</button>
+      </form>
+      <p id="m-adjust-msg" class="msg" role="status"></p>
+
+      <h3>Password</h3>
+      <p class="panel-text small">Makes a new temporary password. Send it to the Zig privately and ask them to change it in Settings.</p>
+      <button type="button" class="btn btn-ghost" id="m-reset">Set temporary password</button>
+      <p id="m-reset-msg" class="msg" role="status"></p>
+
+      <h3>Recent activity</h3>
+      <ul class="ledger" id="m-ledger"></ul>
+    </div>
+  </dialog>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js"></script>
+  <script src="config.js"></script>
+  <script src="account.js"></script>
+  <script src="owner.js"></script>
+</body>
+</html>

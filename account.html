@@ -116,6 +116,7 @@
             <span id="card-no">Zig No. 0000</span>
           </div>
           <div class="zig-card-name" id="card-name">Zig</div>
+          <span class="role-badge" id="card-role" hidden>Owner</span>
           <div class="zig-card-foot">
             <span>Member since <b id="card-since"></b></span>
             <span>ZiggFaide</span>
@@ -160,6 +161,12 @@
           <button class="btn btn-ghost" type="submit">Save name</button>
         </form>
         <p id="name-msg" class="msg" role="status"></p>
+        <form id="form-password" class="form inline">
+          <label>New password <span class="hint">at least 8 characters</span>
+            <input name="password" type="password" required minlength="8" autocomplete="new-password"></label>
+          <button class="btn btn-ghost" type="submit">Change password</button>
+        </form>
+        <p id="password-msg" class="msg" role="status"></p>
         <button type="button" class="btn btn-ghost" id="logout">Log out</button>
       </section>
     </section>
