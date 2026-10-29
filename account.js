@@ -50,6 +50,46 @@
     });
   }
 
+  // Dropdown under the Zig's name: opens on hover (mouse) or tap/click (any device).
+  function paintMenu(link) {
+    let wrap = document.getElementById("acct-wrap");
+    if (!wrap) {
+      wrap = document.createElement("span");
+      wrap.id = "acct-wrap"; wrap.className = "acct-wrap";
+      link.parentNode.insertBefore(wrap, link);
+      wrap.appendChild(link);
+      const menu = document.createElement("div");
+      menu.className = "acct-menu"; menu.id = "acct-menu";
+      menu.innerHTML =
+        '<div class="acct-menu-box">' +
+          '<p class="acct-menu-head" id="acct-menu-no"></p>' +
+          '<a href="account.html"><span>Your Zags</span><span class="acct-menu-zags" id="acct-menu-zags"></span></a>' +
+          '<a href="settings.html"><span>Account settings</span></a>' +
+          '<a href="owner.html" id="acct-menu-owner" class="acct-menu-owner" hidden><span>Owner page</span></a>' +
+          '<button type="button" id="acct-menu-out">Log out</button>' +
+        "</div>";
+      wrap.appendChild(menu);
+      link.setAttribute("aria-haspopup", "true");
+      link.setAttribute("aria-controls", "acct-menu");
+      const set = function (open) { wrap.classList.toggle("open", open); link.setAttribute("aria-expanded", String(open)); };
+      link.addEventListener("click", function (e) {
+        if (!ZF.user) return;            // logged out: normal link to the log-in page
+        e.preventDefault();
+        set(!wrap.classList.contains("open"));
+      });
+      document.addEventListener("click", function (e) { if (!wrap.contains(e.target)) set(false); });
+      document.addEventListener("keydown", function (e) { if (e.key === "Escape" && wrap.classList.contains("open")) { set(false); link.focus(); } });
+      document.getElementById("acct-menu-out").onclick = async function () {
+        await ZF.client.auth.signOut();
+        location.href = "account.html";
+      };
+    }
+    wrap.classList.add("signed-in");
+    document.getElementById("acct-menu-no").textContent = ZF.memberNo(ZF.profile);
+    document.getElementById("acct-menu-owner").hidden = !ZF.isOwner();
+    document.getElementById("acct-menu-zags").textContent = ZF.fmt(ZF.profile && ZF.profile.zags);
+  }
+
   function paintNav() {
     const link = document.getElementById("nav-account");
     if (!link) return;
@@ -65,11 +105,7 @@
       z.textContent = ZF.fmt(ZF.profile && ZF.profile.zags) + " Zags";
       link.appendChild(z);
       link.classList.add("signed-in");
-      if (!document.getElementById("nav-settings")) {
-        const st = document.createElement("a");
-        st.id = "nav-settings"; st.href = "settings.html"; st.textContent = "Settings";
-        link.parentNode.insertBefore(st, link);
-      }
+      paintMenu(link);
       if (ZF.isOwner() && !document.getElementById("nav-owner")) {
         const o = document.createElement("a");
         o.id = "nav-owner"; o.className = "nav-owner"; o.href = "owner.html"; o.textContent = "Owner";
@@ -78,7 +114,10 @@
     } else {
       link.textContent = "Log in";
       link.classList.remove("signed-in");
-      ["nav-owner", "nav-settings"].forEach(function (id) { const o = document.getElementById(id); if (o) o.remove(); });
+      const o = document.getElementById("nav-owner");
+      if (o) o.remove();
+      const w = document.getElementById("acct-wrap");
+      if (w) { w.classList.remove("signed-in", "open"); link.setAttribute("aria-expanded", "false"); }
     }
   }
 

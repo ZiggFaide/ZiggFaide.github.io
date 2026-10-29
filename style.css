@@ -215,6 +215,27 @@ dialog .close { position: absolute; top: 10px; right: 10px; font: 12px var(--mon
 nav a.nav-account { color: var(--paper); display: inline-flex; gap: 10px; align-items: center; }
 .nav-zags { color: var(--accent); }
 .nav-zags::before { content: ""; display: inline-block; width: 1px; height: 12px; background: var(--line); margin-right: 10px; vertical-align: -1px; }
+.signed-in .nav-account::after { content: ""; width: 7px; height: 7px; border-right: 1px solid var(--muted); border-bottom: 1px solid var(--muted); transform: rotate(45deg) translate(-2px, -2px); margin-left: 2px; transition: transform .15s; }
+.acct-wrap.open .nav-account::after { transform: rotate(225deg) translate(-2px, -2px); }
+
+/* dropdown under the Zig's name */
+.acct-wrap { position: relative; display: inline-flex; align-items: center; }
+.acct-menu { display: none; position: absolute; top: 100%; right: 0; padding-top: 22px; z-index: 10; }   /* padding bridges the gap so hover doesn't drop */
+.acct-wrap.signed-in.open .acct-menu { display: block; }
+@media (hover: hover) { .acct-wrap.signed-in:hover .acct-menu { display: block; } }
+.acct-menu-box { width: 240px; background: var(--ink-2); border: 1px solid var(--line); border-top: 2px solid var(--accent); padding: 6px 0; text-transform: none; letter-spacing: 0; }
+.acct-menu-head { margin: 0; padding: 10px 16px 12px; font: 12px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--line); }
+.acct-menu a, .acct-menu button { display: flex; justify-content: space-between; width: 100%; padding: 12px 16px; font: 15px var(--sans); color: var(--paper); text-decoration: none; background: none; border: 0; text-align: left; cursor: pointer; text-transform: none; letter-spacing: 0; }
+.acct-menu a:hover, .acct-menu button:hover, .acct-menu a:focus-visible, .acct-menu button:focus-visible { background: var(--ink); color: var(--paper); outline: none; }
+.acct-menu-zags { font: 500 14px var(--mono); color: var(--accent); }
+.acct-menu a.acct-menu-owner { color: var(--accent); }
+.acct-menu a[hidden] { display: none; }
+nav a.nav-account { white-space: nowrap; }
+@media (max-width: 560px) {
+  nav { gap: 18px; }
+  nav a.nav-owner { display: none; }   /* still in the dropdown */
+}
+.acct-menu button { border-top: 1px solid var(--line); color: var(--muted); }
 
 /* ---------- account page ---------- */
 .acct { padding-top: 72px; padding-bottom: 96px; min-height: 70vh; }
@@ -416,4 +437,3 @@ nav a.nav-owner { color: var(--accent); }
   .set-facts { grid-template-columns: 130px 1fr; }
 }
 
-@media (max-width: 560px) { nav #nav-settings { display: none; } }
