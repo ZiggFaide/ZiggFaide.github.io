@@ -109,7 +109,8 @@
       if (ZF.isOwner() && !document.getElementById("nav-owner")) {
         const o = document.createElement("a");
         o.id = "nav-owner"; o.className = "nav-owner"; o.href = "owner.html"; o.textContent = "Owner";
-        link.parentNode.insertBefore(o, link);
+        const anchor = document.getElementById("acct-wrap") || link;
+        anchor.parentNode.insertBefore(o, anchor);
       }
     } else {
       link.textContent = "Log in";

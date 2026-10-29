@@ -7,6 +7,8 @@ window.ZF_CONFIG = {
   googleLogin: false,
   // account emails are sent from ziggfaide@gmail.com (set in Supabase)
   passwordReset: true,
+  // Faide, the AI chat helper (needs the Gemini key on the server)
+  faide: false,
   // 1,000 Zags = $1 off
   rewards: [
     { tier: 1, zags: 1000, label: "$1 off" },

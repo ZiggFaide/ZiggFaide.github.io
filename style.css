@@ -437,3 +437,93 @@ nav a.nav-owner { color: var(--accent); }
   .set-facts { grid-template-columns: 130px 1fr; }
 }
 
+
+/* ---------- Faide, the chat helper ---------- */
+.faide { position: fixed; right: 24px; bottom: 24px; z-index: 40; font: 15px/1.5 var(--sans); }
+.faide-launch { display: flex; align-items: center; gap: 0; height: 64px; padding: 0 6px 0 4px; background: var(--ink-2); border: 1px solid var(--line); border-radius: 32px; color: var(--paper); cursor: pointer; box-shadow: 0 8px 24px rgba(0, 0, 0, .35); transition: border-color .15s, gap .2s; }
+.faide-launch:hover, .faide-launch:focus-visible { border-color: var(--accent); outline: none; gap: 4px; }
+.faide-launch .faide-svg { width: 56px; height: 56px; }
+.faide-launch-label { max-width: 0; overflow: hidden; white-space: nowrap; font: 500 12px var(--mono); letter-spacing: .08em; text-transform: uppercase; transition: max-width .25s, padding .25s; }
+.faide-launch:hover .faide-launch-label, .faide-launch:focus-visible .faide-launch-label { max-width: 120px; padding-right: 14px; }
+.faide.open .faide-launch { display: none; }
+
+.faide-panel { position: absolute; right: 0; bottom: 0; width: 380px; height: min(600px, calc(100vh - 48px)); display: flex; flex-direction: column; background: var(--ink); border: 1px solid var(--line); border-top: 2px solid var(--accent); box-shadow: 0 16px 48px rgba(0, 0, 0, .5); }
+.faide-panel[hidden] { display: none; }
+.faide-head { display: flex; align-items: center; gap: 10px; padding: 10px 12px 10px 10px; border-bottom: 1px solid var(--line); }
+.faide-avatar .faide-svg { width: 40px; height: 40px; display: block; }
+.faide-title { flex: 1; display: grid; line-height: 1.25; }
+.faide-title b { font: 400 21px var(--serif); }
+.faide-title span { font: 11px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.faide-icon { background: none; border: 1px solid transparent; color: var(--muted); font: 12px var(--mono); letter-spacing: .06em; text-transform: uppercase; padding: 6px 8px; cursor: pointer; }
+.faide-icon:hover, .faide-icon:focus-visible { color: var(--paper); border-color: var(--line); outline: none; }
+
+.faide-log { flex: 1; overflow-y: auto; padding: 16px 14px 8px; display: flex; flex-direction: column; gap: 12px; overscroll-behavior: contain; }
+.faide-msg { display: flex; gap: 8px; align-items: flex-end; max-width: 100%; }
+.faide-msg.from-user { justify-content: flex-end; }
+.faide-msg-avatar .faide-svg { width: 26px; height: 26px; display: block; }
+.faide-bubble { padding: 10px 13px; max-width: 82%; white-space: pre-wrap; overflow-wrap: anywhere; }
+.from-faide .faide-bubble { background: var(--ink-2); border: 1px solid var(--line); }
+.from-user .faide-bubble { background: var(--paper); color: var(--ink); }
+.faide-bubble.error { border-color: var(--accent); color: var(--muted); }
+.faide-bubble a { color: var(--accent); }
+.typing .faide-bubble { display: flex; gap: 5px; padding: 14px 13px; }
+.typing i { width: 6px; height: 6px; background: var(--muted); animation: f-dot 1s infinite; }
+.typing i:nth-child(2) { animation-delay: .15s; } .typing i:nth-child(3) { animation-delay: .3s; }
+
+.faide-chips { display: flex; flex-wrap: wrap; gap: 6px; padding-left: 34px; }
+.faide-chip { background: none; border: 1px solid var(--line); color: var(--paper); font: 14px var(--sans); padding: 6px 10px; cursor: pointer; text-align: left; }
+.faide-chip:hover, .faide-chip:focus-visible { border-color: var(--accent); outline: none; }
+
+.faide-game { margin-left: 34px; display: grid; grid-template-columns: 64px 1fr; gap: 4px 12px; padding: 10px; border: 1px solid var(--line); background: var(--ink-2); }
+.faide-game img { width: 64px; height: 64px; object-fit: cover; grid-row: span 2; display: block; }
+.faide-game-info { display: grid; line-height: 1.3; }
+.faide-game-info b { font: 400 19px var(--serif); }
+.faide-game-info span { color: var(--muted); font-size: 13px; }
+.faide-game-btn { justify-self: start; align-self: end; background: var(--accent); color: var(--ink); border: 0; font: 600 13px var(--sans); padding: 7px 12px; cursor: pointer; text-decoration: none; }
+.faide-game-btn:hover { background: var(--paper); color: var(--ink); }
+.faide-game-btn:disabled { background: transparent; color: var(--muted); border: 1px solid var(--line); cursor: default; }
+.faide-handoff { margin-left: 34px; display: grid; gap: 8px; padding: 12px; border: 1px solid var(--accent); }
+.faide-handoff p { margin: 0; font-size: 14px; color: var(--muted); }
+.faide-handoff input { font: 14px var(--sans); color: var(--paper); background: var(--ink); border: 1px solid var(--line); padding: 8px 10px; }
+.faide-handoff input:focus { outline: none; border-color: var(--accent); }
+.faide-handoff-msg:empty { display: none; }
+
+.faide-form { display: flex; gap: 8px; padding: 10px 12px; border-top: 1px solid var(--line); align-items: flex-end; }
+.faide-form textarea { flex: 1; resize: none; font: 15px/1.45 var(--sans); color: var(--paper); background: var(--ink-2); border: 1px solid var(--line); padding: 9px 11px; max-height: 120px; }
+.faide-form textarea:focus { outline: none; border-color: var(--accent); }
+.faide-send { background: var(--accent); color: var(--ink); border: 0; font: 600 14px var(--sans); padding: 10px 14px; cursor: pointer; }
+.faide-send:hover { background: var(--paper); }
+.faide-note { margin: 0; padding: 0 12px 10px; font-size: 11.5px; line-height: 1.45; color: var(--muted); }
+.faide-note a { color: var(--muted); }
+
+/* Faide's animation: gentle bob, blink, flickering sparks; wiggles while thinking, hops on reply */
+.faide-svg .f-body, .faide-svg .f-eyes, .faide-svg .f-sparks path { transform-box: fill-box; transform-origin: center; }
+.faide-svg .f-body { animation: f-bob 3.2s ease-in-out infinite; }
+.faide-svg .f-eyes { animation: f-blink 5.5s infinite; }
+.faide-svg .f-sparks path { animation: f-flick 2.6s ease-in-out infinite; }
+.faide-svg .f-s2 { animation-delay: .5s; } .faide-svg .f-s3 { animation-delay: 1.3s; }
+.faide-launch:hover .f-body { animation: f-tilt .5s ease-out forwards; }
+.faide.thinking .faide-svg .f-body { animation: f-wiggle .45s ease-in-out infinite; }
+.faide.thinking .faide-svg .f-sparks path { animation-duration: .5s; }
+.faide.thinking .faide-svg .f-eyes { animation: f-look 1.2s ease-in-out infinite; }
+.faide.happy .faide-avatar .f-body { animation: f-hop .6s ease-out; }
+.faide-svg.tiny .f-body { animation: none; }
+.faide-svg.tiny .f-sparks { display: none; }
+@keyframes f-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2.5px); } }
+@keyframes f-blink { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(.1); } }
+@keyframes f-flick { 0%, 100% { opacity: .15; transform: scale(.8); } 40%, 60% { opacity: 1; transform: scale(1); } }
+@keyframes f-wiggle { 0%, 100% { transform: rotate(-5deg); } 50% { transform: rotate(5deg); } }
+@keyframes f-look { 0%, 100% { transform: translate(-1px, -1px); } 50% { transform: translate(1px, -1px); } }
+@keyframes f-hop { 0% { transform: translateY(0); } 40% { transform: translateY(-5px) rotate(-6deg); } 100% { transform: translateY(0); } }
+@keyframes f-tilt { to { transform: rotate(-8deg) translateY(-2px); } }
+@keyframes f-dot { 0%, 100% { opacity: .25; } 50% { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .faide-svg *, .typing i { animation: none !important; }
+}
+@media (max-width: 560px) {
+  .faide { right: 16px; bottom: 16px; }
+  .faide-launch { height: 56px; padding: 0 4px; }
+  .faide-launch .faide-svg { width: 48px; height: 48px; }
+  .faide.open { inset: 0; }
+  .faide-panel { position: fixed; inset: 0; width: auto; height: 100%; border: 0; border-top: 2px solid var(--accent); }
+}
