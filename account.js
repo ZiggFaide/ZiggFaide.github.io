@@ -65,6 +65,11 @@
       z.textContent = ZF.fmt(ZF.profile && ZF.profile.zags) + " Zags";
       link.appendChild(z);
       link.classList.add("signed-in");
+      if (!document.getElementById("nav-settings")) {
+        const st = document.createElement("a");
+        st.id = "nav-settings"; st.href = "settings.html"; st.textContent = "Settings";
+        link.parentNode.insertBefore(st, link);
+      }
       if (ZF.isOwner() && !document.getElementById("nav-owner")) {
         const o = document.createElement("a");
         o.id = "nav-owner"; o.className = "nav-owner"; o.href = "owner.html"; o.textContent = "Owner";
@@ -73,8 +78,7 @@
     } else {
       link.textContent = "Log in";
       link.classList.remove("signed-in");
-      const o = document.getElementById("nav-owner");
-      if (o) o.remove();
+      ["nav-owner", "nav-settings"].forEach(function (id) { const o = document.getElementById(id); if (o) o.remove(); });
     }
   }
 
