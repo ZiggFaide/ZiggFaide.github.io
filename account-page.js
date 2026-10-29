@@ -37,6 +37,7 @@
   $("to-forgot").onclick = function () { tab("forgot"); };
   $("back-login").onclick = function () { tab("login"); };
   if (location.hash === "#login") tab("login");
+  if (!cfg.googleLogin) { $("google").hidden = true; document.querySelector(".or").hidden = true; }
 
   // ---------------- join / log in / reset ----------------
   $("form-join").onsubmit = async function (e) {
