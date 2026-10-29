@@ -186,8 +186,10 @@
   let paying = null;
 
   function checkoutUrl(g, embed) {
-    if (!embed) return g.checkout;
-    return g.checkout + (g.checkout.indexOf("?") >= 0 ? "&" : "?") + "embed=1&media=0";
+    // logged-in Zigs: fill in their email and tag the order so it earns Zags
+    const who = window.ZF ? window.ZF.checkoutParams() : "";
+    const base = g.checkout + (g.checkout.indexOf("?") >= 0 ? "&" : "?");
+    return base + (embed ? "embed=1&media=0" : "") + who;
   }
 
   function payNext() {

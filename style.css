@@ -1,4 +1,5 @@
 /* ZiggFaide — site styles */
+[hidden] { display: none !important; }
 
 @font-face { font-family: "Fraunces"; src: url(fonts/fraunces-latin-400-normal.woff2) format("woff2"); font-weight: 400; font-display: swap; }
 @font-face { font-family: "Fraunces"; src: url(fonts/fraunces-latin-600-normal.woff2) format("woff2"); font-weight: 600; font-display: swap; }
@@ -208,4 +209,124 @@ dialog .close { position: absolute; top: 10px; right: 10px; font: 12px var(--mon
 @media (max-width: 860px) {
   .btn.btn-wide { justify-content: center; }
   .buy .btn-ghost { width: 100%; justify-content: center; }
+}
+
+/* ---------- account link in header ---------- */
+nav a.nav-account { color: var(--paper); display: inline-flex; gap: 10px; align-items: center; }
+.nav-zags { color: var(--accent); }
+.nav-zags::before { content: ""; display: inline-block; width: 1px; height: 12px; background: var(--line); margin-right: 10px; vertical-align: -1px; }
+
+/* ---------- account page ---------- */
+.acct { padding-top: 72px; padding-bottom: 96px; min-height: 70vh; }
+.acct h1 { font: 400 clamp(40px, 5.6vw, 68px)/1.04 var(--serif); letter-spacing: -0.025em; margin: 0 0 20px; }
+.acct h1 em { font-style: italic; color: var(--accent); }
+.acct .lede { margin-bottom: 36px; }
+.narrow { max-width: 520px; }
+
+.auth { display: grid; grid-template-columns: 6fr 5fr; gap: 72px; align-items: start; }
+.earn { grid-template-columns: 150px 1fr; max-width: 520px; }
+.auth-box { border: 1px solid var(--line); background: var(--ink-2); padding: 28px; }
+.tabs { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--line); margin: -28px -28px 24px; }
+.tab { font: 12px var(--mono); letter-spacing: .08em; text-transform: uppercase; background: none; border: 0; color: var(--muted); padding: 16px; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+.tab[aria-selected="true"] { color: var(--paper); border-bottom-color: var(--accent); }
+.google { gap: 12px; }
+.google svg { width: 18px; height: 18px; }
+.or { display: flex; align-items: center; gap: 12px; font: 11px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 20px 0; }
+.or::before, .or::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+.form { display: grid; gap: 16px; }
+.form label { display: grid; gap: 6px; font-size: 14px; font-weight: 600; }
+.form .hint { font-weight: 400; color: var(--muted); font-size: 13px; }
+.form input:not([type="checkbox"]) {
+  font: 16px var(--sans); color: var(--paper); background: var(--ink); border: 1px solid var(--line);
+  padding: 12px 14px; border-radius: 0; width: 100%;
+}
+.form input:focus { outline: none; border-color: var(--accent); }
+.form .check { grid-template-columns: 18px 1fr; gap: 12px; font-weight: 400; color: var(--muted); align-items: start; }
+.form .check input { width: 18px; height: 18px; margin: 2px 0 0; accent-color: var(--accent); }
+.form-intro { margin: 0; color: var(--muted); font-size: 15px; }
+.form.inline { grid-template-columns: minmax(0, 360px) auto; align-items: end; justify-content: start; }
+.form.inline .btn { justify-self: start; }
+.linkish { background: none; border: 0; padding: 0; color: var(--muted); font: 13px var(--sans); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; justify-self: start; }
+.linkish:hover { color: var(--paper); }
+.msg { font-size: 14px; color: var(--paper); margin: 16px 0 0; min-height: 1em; }
+.msg:empty { display: none; }
+.msg.bad { color: var(--accent); }
+.btn:disabled { opacity: .45; cursor: default; }
+.btn:disabled:hover { background: var(--accent); }
+
+/* member card + balance */
+.member-top { display: grid; grid-template-columns: 420px 1fr; gap: 56px; align-items: center; margin-bottom: 72px; }
+.zig-card {
+  aspect-ratio: 1.586; background: var(--accent); color: var(--ink); padding: 24px;
+  display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden;
+}
+.zig-card::after {          /* big faint zigzag in the corner */
+  content: ""; position: absolute; right: -40px; bottom: -50px; width: 240px; height: 240px;
+  background: no-repeat center / contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath d='M11 12H33L19 24H31L17 36H37' fill='none' stroke='%2314120f' stroke-width='5' stroke-miterlimit='10'/%3E%3C/svg%3E");
+  opacity: .12;
+}
+.zig-card-head { display: flex; justify-content: space-between; align-items: center; font: 500 13px var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+.zig-card .mark { width: 34px; height: 34px; }
+.zig-card .mark rect { fill: var(--ink); }
+.zig-card .mark path { stroke: var(--accent); }
+.zig-card-name { font: 400 40px/1.05 var(--serif); letter-spacing: -0.02em; word-break: break-word; position: relative; z-index: 1; }
+.zig-card-foot { display: flex; justify-content: space-between; font: 12px var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+.balance .kicker { margin-bottom: 8px; }
+.balance-num { font: 400 clamp(64px, 9vw, 112px)/1 var(--serif); letter-spacing: -0.04em; display: flex; align-items: baseline; gap: 16px; }
+.balance-num .unit { font: 500 14px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
+.balance-sub { color: var(--muted); margin: 12px 0 0; }
+.balance-sub b { color: var(--paper); }
+
+.panels { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; margin-bottom: 72px; }
+.panel .section-head { margin-bottom: 24px; }
+.panel.full { margin-bottom: 72px; }
+.panel-text { color: var(--muted); margin: 0 0 20px; }
+.panel-text.small { font-size: 14px; margin: 16px 0 0; }
+
+.streak { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; margin-bottom: 20px; }
+.streak-day { font: 12px var(--mono); color: var(--muted); border: 1px solid var(--line); text-align: center; padding: 10px 0; }
+.streak-day.on { background: var(--accent); border-color: var(--accent); color: var(--ink); }
+
+.rewards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.reward { background: var(--ink-2); border: 1px solid var(--line); color: var(--paper); padding: 18px 12px; cursor: pointer; display: grid; gap: 4px; text-align: left; }
+.reward:hover:not(:disabled) { border-color: var(--accent); }
+.reward:disabled { opacity: .4; cursor: default; }
+.reward-label { font: 400 26px var(--serif); }
+.reward-cost { font: 12px var(--mono); color: var(--muted); letter-spacing: .04em; }
+.codes { list-style: none; padding: 0; margin: 16px 0 0; }
+.codes li { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.codes code { font: 500 15px var(--mono); color: var(--accent); letter-spacing: .06em; }
+.c-meta { font-size: 13px; color: var(--muted); flex: 1; }
+
+.ledger { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--line); }
+.ledger li { display: grid; grid-template-columns: 140px 1fr auto; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.ledger .empty { display: block; color: var(--muted); }
+.l-date { font: 12px var(--mono); color: var(--muted); padding-top: 3px; text-transform: uppercase; letter-spacing: .04em; }
+.l-amt { font: 500 15px var(--mono); color: var(--accent); }
+.l-amt.neg { color: var(--muted); }
+.settings .btn-ghost { cursor: pointer; }
+.settings #logout { margin-top: 28px; }
+
+@media (max-width: 860px) {
+  .acct { padding-top: 48px; }
+  .auth, .member-top, .panels { grid-template-columns: 1fr; gap: 40px; }
+  .auth-box { padding: 20px; }
+  .tabs { margin: -20px -20px 20px; }
+  .zig-card-name { font-size: 32px; }
+  .form.inline { grid-template-columns: 1fr; }
+  .ledger li { grid-template-columns: 1fr auto; }
+  .l-date { grid-column: 1 / -1; padding: 0; }
+  .earn { grid-template-columns: 120px 1fr; }
+}
+@media (max-width: 480px) {
+  nav a[href$="#help"] { display: none; }
+  .rewards { grid-template-columns: 1fr 1fr 1fr; }
+  .reward-label { font-size: 21px; }
+}
+@media (max-width: 560px) {
+  nav { gap: 16px; }
+  .signed-in .nav-name { display: none; }
+  .signed-in .nav-zags::before { display: none; }
+  nav a[href$="#catalogue"] { display: none; }
 }

@@ -28,6 +28,7 @@
         <a href="#catalogue">Games</a>
         <a href="#about">About</a>
         <a href="#help">Help</a>
+        <a id="nav-account" class="nav-account" href="account.html">Log in</a>
         <button type="button" class="cart-link" id="cart-open">Cart <span id="cart-count">0</span></button>
       </nav>
     </div>
@@ -37,7 +38,7 @@
     <section class="hero wrap">
       <p class="kicker">Independent games <span class="rule"></span> Est. 2026</p>
       <h1>Small games, made <em>by one person.</em></h1>
-      <p class="lede">Pay once, download, and keep it. No accounts, no ads, no subscriptions.</p>
+      <p class="lede">Pay once, download, and keep it. No ads, no subscriptions. Join as a <a href="account.html">Zig</a> to earn Zags toward your next game.</p>
     </section>
 
     <section id="catalogue" class="wrap">
@@ -70,6 +71,14 @@
         <div>
           <dt>Who handles payment?</dt>
           <dd>Lemon Squeezy. They take card, PayPal and Apple Pay, and handle sales tax. Your card details never reach this site.</dd>
+        </div>
+        <div>
+          <dt>What are Zigs and Zags?</dt>
+          <dd>Zigs are ZiggFaide members. Zags are the points Zigs earn: 500 for joining, 200 for every $1 spent, and more for checking in daily. 1,000 Zags = $1 off. <a href="account.html">Join free</a>.</dd>
+        </div>
+        <div>
+          <dt>Do I need an account to buy?</dt>
+          <dd>No. Anyone can buy as a guest. Buy while logged in, or with the same email, to earn Zags.</dd>
         </div>
         <div>
           <dt>Refunds</dt>
@@ -117,6 +126,9 @@
     <button type="button" class="close">Close</button>
   </dialog>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js"></script>
+  <script src="config.js"></script>
+  <script src="account.js"></script>
   <script src="games.js"></script>
   <script src="main.js"></script>
   <script src="https://assets.lemonsqueezy.com/lemon.js" defer></script>

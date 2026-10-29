@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your account — ZiggFaide</title>
+  <meta name="description" content="Join ZiggFaide as a Zig and earn Zags toward your next game.">
+  <meta name="theme-color" content="#14120f">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="brand/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="brand/apple-touch-icon.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap top-row">
+      <a class="brand" href="./" aria-label="ZiggFaide home">
+        <svg class="mark" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="4"/><path d="M11 12H33L19 24H31L17 36H37"/></svg>
+        <span>ZiggFaide</span>
+      </a>
+      <nav>
+        <a href="./#catalogue">Games</a>
+        <a href="./#help">Help</a>
+        <a id="nav-account" class="nav-account" href="account.html">Log in</a>
+        <a class="cart-link" href="./#cart">Cart</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap acct">
+
+    <!-- not set up yet -->
+    <section id="view-offline" class="acct-view" hidden>
+      <p class="kicker">Accounts</p>
+      <h1>Accounts are coming soon.</h1>
+      <p class="lede">Zig accounts and Zags aren't switched on yet. Check back shortly.</p>
+    </section>
+
+    <!-- log in / join -->
+    <section id="view-auth" class="acct-view auth" hidden>
+      <div class="auth-pitch">
+        <p class="kicker">Membership <span class="rule"></span> Free</p>
+        <h1>Become a <em>Zig.</em></h1>
+        <p class="lede">Zigs earn Zags, ZiggFaide's points, and trade them for money off games.</p>
+        <dl class="specs earn">
+          <dt>Join</dt><dd>500 Zags welcome bonus</dd>
+          <dt>Buy a game</dt><dd>200 Zags per $1 spent</dd>
+          <dt>Check in daily</dt><dd>25 Zags, up to 75 on a streak</dd>
+          <dt>Spend</dt><dd>1,000 Zags = $1 off any game</dd>
+        </dl>
+      </div>
+
+      <div class="auth-box">
+        <div class="tabs" role="tablist">
+          <button type="button" role="tab" id="tab-join" class="tab" aria-selected="true">Join</button>
+          <button type="button" role="tab" id="tab-login" class="tab" aria-selected="false">Log in</button>
+        </div>
+
+        <button type="button" class="btn btn-ghost btn-wide google" id="google">
+          <svg viewBox="0 0 18 18" aria-hidden="true"><path fill="#4285F4" d="M17.64 9.2c0-.64-.06-1.25-.16-1.84H9v3.48h4.84a4.14 4.14 0 0 1-1.8 2.72v2.26h2.92c1.7-1.57 2.68-3.88 2.68-6.62z"/><path fill="#34A853" d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.92-2.26c-.8.54-1.84.86-3.04.86-2.34 0-4.32-1.58-5.03-3.7H.96v2.33A9 9 0 0 0 9 18z"/><path fill="#FBBC05" d="M3.97 10.72a5.4 5.4 0 0 1 0-3.44V4.95H.96a9 9 0 0 0 0 8.1l3.01-2.33z"/><path fill="#EA4335" d="M9 3.58c1.32 0 2.5.45 3.44 1.35l2.58-2.58A9 9 0 0 0 .96 4.95l3.01 2.33C4.68 5.16 6.66 3.58 9 3.58z"/></svg>
+          Continue with Google
+        </button>
+        <p class="or"><span>or with email</span></p>
+
+        <form id="form-join" class="form">
+          <label>Zig name <span class="hint">2–24 characters, shown on your card</span>
+            <input name="name" required minlength="2" maxlength="24" autocomplete="nickname"></label>
+          <label>Email
+            <input name="email" type="email" required autocomplete="email"></label>
+          <label>Password <span class="hint">at least 8 characters</span>
+            <input name="password" type="password" required minlength="8" autocomplete="new-password"></label>
+          <label class="check"><input name="age" type="checkbox" required>
+            <span>I'm 13 or older and agree to the <a href="terms.html" target="_blank">Terms</a> and <a href="privacy.html" target="_blank">Privacy Policy</a>.</span></label>
+          <button class="btn btn-wide" type="submit">Join and get 500 Zags</button>
+        </form>
+
+        <form id="form-login" class="form" hidden>
+          <label>Email
+            <input name="email" type="email" required autocomplete="email"></label>
+          <label>Password
+            <input name="password" type="password" required autocomplete="current-password"></label>
+          <button class="btn btn-wide" type="submit">Log in</button>
+          <button type="button" class="linkish" id="to-forgot">Forgot password?</button>
+        </form>
+
+        <form id="form-forgot" class="form" hidden>
+          <p class="form-intro">Enter your email and we'll send a link to set a new password.</p>
+          <label>Email
+            <input name="email" type="email" required autocomplete="email"></label>
+          <button class="btn btn-wide" type="submit">Send reset link</button>
+          <button type="button" class="linkish" id="back-login">Back to log in</button>
+        </form>
+
+        <p id="auth-msg" class="msg" role="status"></p>
+      </div>
+    </section>
+
+    <!-- new password after reset link -->
+    <section id="view-reset" class="acct-view narrow" hidden>
+      <p class="kicker">Account</p>
+      <h1>Set a new password.</h1>
+      <form id="form-reset" class="form">
+        <label>New password <span class="hint">at least 8 characters</span>
+          <input name="password" type="password" required minlength="8" autocomplete="new-password"></label>
+        <button class="btn btn-wide" type="submit">Save password</button>
+      </form>
+      <p id="reset-msg" class="msg" role="status"></p>
+    </section>
+
+    <!-- member dashboard -->
+    <section id="view-member" class="acct-view" hidden>
+      <div class="member-top">
+        <div class="zig-card" aria-label="Your Zig card">
+          <div class="zig-card-head">
+            <svg class="mark" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="4"/><path d="M11 12H33L19 24H31L17 36H37"/></svg>
+            <span id="card-no">Zig No. 0000</span>
+          </div>
+          <div class="zig-card-name" id="card-name">Zig</div>
+          <div class="zig-card-foot">
+            <span>Member since <b id="card-since"></b></span>
+            <span>ZiggFaide</span>
+          </div>
+        </div>
+
+        <div class="balance">
+          <p class="kicker">Your Zags</p>
+          <div class="balance-num"><span id="zag-balance">0</span><span class="unit">Zags</span></div>
+          <p class="balance-sub">Worth <b id="zag-worth">$0</b> off games.</p>
+        </div>
+      </div>
+
+      <div class="panels">
+        <section class="panel">
+          <div class="section-head"><h2>Daily check-in</h2><span id="streak-label">No streak yet</span></div>
+          <div class="streak" id="streak" aria-hidden="true"></div>
+          <p class="panel-text" id="checkin-text">Check in once a day for Zags. Come back on back-to-back days to raise your reward, up to 75.</p>
+          <button type="button" class="btn" id="checkin">Check in</button>
+          <p id="checkin-msg" class="msg" role="status"></p>
+        </section>
+
+        <section class="panel">
+          <div class="section-head"><h2>Spend Zags</h2><span>Codes last 90 days</span></div>
+          <div class="rewards" id="rewards"></div>
+          <p id="redeem-msg" class="msg" role="status"></p>
+          <ul class="codes" id="codes"></ul>
+          <p class="panel-text small">Enter the code in the discount field at checkout. Each code works once.</p>
+        </section>
+      </div>
+
+      <section class="panel full">
+        <div class="section-head"><h2>Activity</h2><span id="activity-count"></span></div>
+        <ul class="ledger" id="ledger"></ul>
+      </section>
+
+      <section class="panel full settings">
+        <div class="section-head"><h2>Settings</h2><span id="set-email"></span></div>
+        <form id="form-name" class="form inline">
+          <label>Zig name
+            <input name="name" required minlength="2" maxlength="24"></label>
+          <button class="btn btn-ghost" type="submit">Save name</button>
+        </form>
+        <p id="name-msg" class="msg" role="status"></p>
+        <button type="button" class="btn btn-ghost" id="logout">Log out</button>
+      </section>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap">
+      <div class="foot-row">
+        <span>&copy; 2026 ZiggFaide</span>
+        <span class="foot-links"><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="mailto:contact.ziggfaide@proton.me">contact.ziggfaide@proton.me</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js"></script>
+  <script src="config.js"></script>
+  <script src="account.js"></script>
+  <script src="account-page.js"></script>
+</body>
+</html>
