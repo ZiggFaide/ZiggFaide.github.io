@@ -232,7 +232,16 @@
       try { t = (await error.context.json()).error || t; } catch (x) { /* keep default */ }
       messages.push({ role: "faide", text: t, error: true });
     } else {
+      // the secret code shouldn't sit in the chat history
+      if (data.masked) {
+        for (let i = messages.length - 1; i >= 0; i--) if (messages[i].role === "user") { messages[i].text = "••••••••"; break; }
+      }
       messages.push({ role: "faide", text: data.reply, games: data.games, handoff: data.handoff });
+      // Faide gave Zags: update the balance shown in the header
+      if (typeof data.zags === "number" && ZF.profile) {
+        ZF.profile.zags = data.zags;
+        document.querySelectorAll(".nav-zags").forEach(function (z) { z.textContent = ZF.fmt(data.zags) + " Zags"; });
+      }
       root.classList.add("happy");
       setTimeout(function () { root.classList.remove("happy"); }, 700);
     }

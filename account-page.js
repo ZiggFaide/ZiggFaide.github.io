@@ -102,7 +102,7 @@
   // ---------------- dashboard ----------------
   const LABELS = {
     signup: "Welcome bonus", checkin: "Daily check-in", purchase: "Game purchase",
-    refund: "Purchase refunded", redeem: "Traded for a discount code", redeem_return: "Code failed, Zags returned"
+    refund: "Purchase refunded", redeem: "Traded for a discount code", redeem_return: "Code failed, Zags returned", faide: "Gift from Faide"
   };
   function label(row) {
     if (row.reason !== "owner") return LABELS[row.reason] || row.reason;
