@@ -1,4 +1,4 @@
-// Faide: ZiggFaide's AI helper. A little zigzag spark in the corner of every page.
+// Faide: riusn's AI helper. A little zigzag spark in the corner of every page.
 // Answers come from the "faide" server function (Google Gemini). Chats stay in this tab only.
 (function () {
   const ZF = window.ZF;
@@ -31,7 +31,7 @@
     '<section class="faide-panel" id="faide-panel" role="dialog" aria-label="Chat with Faide" hidden>' +
       '<header class="faide-head">' +
         '<span class="faide-avatar">' + mascot("small") + "</span>" +
-        '<div class="faide-title"><b>Faide</b><span>ZiggFaide\'s helper · AI</span></div>' +
+        '<div class="faide-title"><b>Faide</b><span>riusn\'s helper · AI</span></div>' +
         '<button type="button" class="faide-icon" data-act="reset" title="Start over" aria-label="Start a new chat">New</button>' +
         '<button type="button" class="faide-icon" data-act="close" aria-label="Close chat">Close</button>' +
       "</header>" +
@@ -87,7 +87,7 @@
   // ---------------- drawing the chat ----------------
   function greeting() {
     const name = ZF.user && ZF.profile && ZF.profile.display_name;
-    return (name ? "Hi " + name + "! " : "Hi! ") + "I'm Faide, ZiggFaide's helper. Ask me about the games, Zags, " +
+    return (name ? "Hi " + name + "! " : "Hi! ") + "I'm Faide, riusn's helper. Ask me about the games, Zags, " +
       (ZF.user ? "your account, " : "accounts, ") + "or anything about buying.";
   }
   function suggestions() {
@@ -168,16 +168,16 @@
     location.href = "./#cart";
   }
 
-  // "send this chat to ZiggFaide" form
+  // "send this chat to riusn" form
   function handoffCard(m) {
     const box = el("form", "faide-handoff");
-    box.appendChild(el("p", null, "Want a person to help? Send this chat to ZiggFaide and you'll get an email back."));
+    box.appendChild(el("p", null, "Want a person to help? Send this chat to riusn and you'll get an email back."));
     const mail = el("input");
     mail.type = "email"; mail.required = true; mail.placeholder = "Your email"; mail.name = "email";
     mail.value = (ZF.user && ZF.user.email) || "";
     const note = el("input");
     note.name = "note"; note.placeholder = "Anything to add? (optional)"; note.maxLength = 500;
-    const btn = el("button", "faide-game-btn", "Send to ZiggFaide");
+    const btn = el("button", "faide-game-btn", "Send to riusn");
     btn.type = "submit";
     const msg = el("p", "faide-handoff-msg");
     box.append(mail, note, btn, msg);
@@ -197,7 +197,7 @@
       if (data && data.sent) {
         m.handoffSent = true; save();
         box.textContent = "";
-        box.appendChild(el("p", null, "Sent. ZiggFaide will reply to " + mail.value + " soon."));
+        box.appendChild(el("p", null, "Sent. riusn will reply to " + mail.value + " soon."));
       }
     };
     log.appendChild(box);

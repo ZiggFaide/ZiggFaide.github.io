@@ -106,7 +106,7 @@
   };
   function label(row) {
     if (row.reason !== "owner") return LABELS[row.reason] || row.reason;
-    return (row.amount > 0 ? "Gift from ZiggFaide" : "Adjusted by ZiggFaide") + (row.note ? ": " + row.note : "");
+    return (row.amount > 0 ? "Gift from riusn" : "Adjusted by riusn") + (row.note ? ": " + row.note : "");
   }
   const utcToday = function () { return new Date().toISOString().slice(0, 10); };
   const money = function (c) { return "$" + (c / 100).toFixed(c % 100 ? 2 : 0); };

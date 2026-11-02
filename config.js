@@ -1,4 +1,4 @@
-// Public connection details for the ZiggFaide account service (Supabase).
+// Public connection details for the riusn account service (Supabase).
 // These two values are safe to publish: the database rules decide what anyone can do.
 window.ZF_CONFIG = {
   supabaseUrl: "https://vaibkdrwrdaetoallxxf.supabase.co",

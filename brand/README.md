@@ -1,4 +1,4 @@
-# ZiggFaide brand
+# riusn brand
 
 Mark: a double zigzag "Z" cut out of an orange square.
 

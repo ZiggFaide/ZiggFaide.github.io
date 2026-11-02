@@ -97,7 +97,7 @@
     e.preventDefault();
     const f = e.target;
     if (f.confirm.value !== "DELETE") return say("m-delete", "Type DELETE in capitals to confirm.", true);
-    if (!confirm("Delete your ZiggFaide account for good? Your " + ZF.fmt(ZF.profile.zags) + " Zags will be lost.")) return;
+    if (!confirm("Delete your riusn account for good? Your " + ZF.fmt(ZF.profile.zags) + " Zags will be lost.")) return;
     busy(f, true); say("m-delete", "Deleting…");
     const { error } = await sb.functions.invoke("account", {
       body: { action: "delete", password: f.password.value, confirm: f.confirm.value }
