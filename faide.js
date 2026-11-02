@@ -1,4 +1,4 @@
-// Faide: riusn's AI helper. A little zigzag spark in the corner of every page.
+// Byte: riusn's AI helper. A little pixel critter in the corner of every page.
 // Answers come from the "faide" server function (Google Gemini). Chats stay in this tab only.
 (function () {
   const ZF = window.ZF;
@@ -9,15 +9,15 @@
   // ---------------- the mascot ----------------
   // A chunky orange bolt with a face. Parts are classed so CSS can animate them.
   function mascot(cls) {
-    return '<svg class="faide-svg ' + (cls || "") + '" viewBox="0 0 64 64" aria-hidden="true">' +
-      '<g class="f-sparks" stroke="#ff6b57" stroke-width="2.4" stroke-linecap="round">' +
-        '<path class="f-s1" d="M50 9l4-4"/><path class="f-s2" d="M53 15h5"/><path class="f-s3" d="M10 47l-5 2"/>' +
+    // Byte: a 12x12 pixel critter with a bite out of its corner; the crumbs flicker
+    return '<svg class="faide-svg ' + (cls || "") + '" viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true">' +
+      '<g class="f-sparks" fill="#f6ecd6">' +
+        '<path class="f-s1" d="M9 2h1v1h-1z"/><path class="f-s2" d="M11 3h1v1h-1z"/><path class="f-s3" d="M10 0h1v1h-1z"/>' +
       "</g>" +
       '<g class="f-body">' +
-        '<path d="M36 4 L12 35 H28 L22 60 L52 25 H35 L43 4 Z" fill="#ff6b57" stroke="#ff6b57" stroke-width="5" stroke-linejoin="round"/>' +
-        '<g class="f-eyes"><g fill="#141830"><ellipse cx="26" cy="29.5" rx="3" ry="3.7"/><ellipse cx="36" cy="29.5" rx="3" ry="3.7"/></g>' +
-        '<g fill="#f6ecd6"><circle cx="27" cy="28.2" r="1.05"/><circle cx="37" cy="28.2" r="1.05"/></g></g>' +
-        '<path class="f-mouth" d="M28.6 34.6 q2.4 1.9 4.8 0" fill="none" stroke="#141830" stroke-width="1.6" stroke-linecap="round"/>' +
+        '<path d="M2 1h5v1h-5zM1 2h6v1h-6zM1 3h7v1h-7zM1 4h8v1h-8zM1 5h10v1h-10zM1 6h10v1h-10zM1 7h10v1h-10zM1 8h10v1h-10zM1 9h10v1h-10zM2 10h8v1h-8zM2 11h2v1h-2zM8 11h2v1h-2z" fill="#ff6b57"/>' +
+        '<g class="f-eyes"><path d="M3 5h2v2h-2zM7 5h2v2h-2z" fill="#141830"/><path d="M3 5h1v1h-1zM7 5h1v1h-1z" fill="#f6ecd6"/></g>' +
+        '<path class="f-mouth" d="M5 8h2v1h-2z" fill="#141830"/>' +
       "</g></svg>";
   }
 
@@ -25,22 +25,22 @@
   const root = document.createElement("div");
   root.className = "faide";
   root.innerHTML =
-    '<button type="button" class="faide-launch" aria-expanded="false" aria-controls="faide-panel" aria-label="Chat with Faide">' +
-      mascot("big") + '<span class="faide-launch-label">Ask Faide</span>' +
+    '<button type="button" class="faide-launch" aria-expanded="false" aria-controls="faide-panel" aria-label="Chat with Byte">' +
+      mascot("big") + '<span class="faide-launch-label">Ask Byte</span>' +
     "</button>" +
-    '<section class="faide-panel" id="faide-panel" role="dialog" aria-label="Chat with Faide" hidden>' +
+    '<section class="faide-panel" id="faide-panel" role="dialog" aria-label="Chat with Byte" hidden>' +
       '<header class="faide-head">' +
         '<span class="faide-avatar">' + mascot("small") + "</span>" +
-        '<div class="faide-title"><b>Faide</b><span>riusn\'s helper · AI</span></div>' +
+        '<div class="faide-title"><b>Byte</b><span>riusn\'s helper · AI</span></div>' +
         '<button type="button" class="faide-icon" data-act="reset" title="Start over" aria-label="Start a new chat">New</button>' +
         '<button type="button" class="faide-icon" data-act="close" aria-label="Close chat">Close</button>' +
       "</header>" +
       '<div class="faide-log" aria-live="polite"></div>' +
       '<form class="faide-form">' +
-        '<textarea name="q" rows="1" maxlength="1000" placeholder="Ask about games, Zags or your order" aria-label="Message Faide"></textarea>' +
+        '<textarea name="q" rows="1" maxlength="1000" placeholder="Ask about games, Zags or your order" aria-label="Message Byte"></textarea>' +
         '<button type="submit" class="faide-send" aria-label="Send">Send</button>' +
       "</form>" +
-      '<p class="faide-note">Faide is an AI and can get things wrong. Chats are processed by Google Gemini. ' +
+      '<p class="faide-note">Byte is an AI and can get things wrong. Chats are processed by Google Gemini. ' +
         'Need a person? <a href="mailto:' + CONTACT + '">' + CONTACT + "</a></p>" +
     "</section>";
   document.body.appendChild(root);
@@ -87,7 +87,7 @@
   // ---------------- drawing the chat ----------------
   function greeting() {
     const name = ZF.user && ZF.profile && ZF.profile.display_name;
-    return (name ? "Hi " + name + "! " : "Hi! ") + "I'm Faide, riusn's helper. Ask me about the games, Zags, " +
+    return (name ? "Hi " + name + "! " : "Hi! ") + "I'm Byte, riusn's helper. Ask me about the games, Zags, " +
       (ZF.user ? "your account, " : "accounts, ") + "or anything about buying.";
   }
   function suggestions() {
@@ -237,7 +237,7 @@
         for (let i = messages.length - 1; i >= 0; i--) if (messages[i].role === "user") { messages[i].text = "••••••••"; break; }
       }
       messages.push({ role: "faide", text: data.reply, games: data.games, handoff: data.handoff });
-      // Faide gave Zags: update the balance shown in the header
+      // Byte gave Zags: update the balance shown in the header
       if (typeof data.zags === "number" && ZF.profile) {
         ZF.profile.zags = data.zags;
         document.querySelectorAll(".nav-zags").forEach(function (z) { z.textContent = ZF.fmt(data.zags) + " Zags"; });

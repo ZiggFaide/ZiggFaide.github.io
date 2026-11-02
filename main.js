@@ -238,7 +238,7 @@
   render();
   if (location.hash === "#cart") openCart();
 
-  // lets Faide (the chat helper) add games and open the cart on this page
+  // lets Byte (the chat helper) add games and open the cart on this page
   window.ZFCart = {
     has: function (id) { return cart.indexOf(id) >= 0; },
     add: function (id) { if (buyable(byId[id])) { add(id); openCart(); } }
