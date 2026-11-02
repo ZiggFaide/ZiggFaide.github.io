@@ -10,14 +10,14 @@
   // A chunky orange bolt with a face. Parts are classed so CSS can animate them.
   function mascot(cls) {
     return '<svg class="faide-svg ' + (cls || "") + '" viewBox="0 0 64 64" aria-hidden="true">' +
-      '<g class="f-sparks" stroke="#e4572e" stroke-width="2.4" stroke-linecap="round">' +
+      '<g class="f-sparks" stroke="#ff6b57" stroke-width="2.4" stroke-linecap="round">' +
         '<path class="f-s1" d="M50 9l4-4"/><path class="f-s2" d="M53 15h5"/><path class="f-s3" d="M10 47l-5 2"/>' +
       "</g>" +
       '<g class="f-body">' +
-        '<path d="M36 4 L12 35 H28 L22 60 L52 25 H35 L43 4 Z" fill="#e4572e" stroke="#e4572e" stroke-width="5" stroke-linejoin="round"/>' +
-        '<g class="f-eyes"><g fill="#14120f"><ellipse cx="26" cy="29.5" rx="3" ry="3.7"/><ellipse cx="36" cy="29.5" rx="3" ry="3.7"/></g>' +
-        '<g fill="#efe7d6"><circle cx="27" cy="28.2" r="1.05"/><circle cx="37" cy="28.2" r="1.05"/></g></g>' +
-        '<path class="f-mouth" d="M28.6 34.6 q2.4 1.9 4.8 0" fill="none" stroke="#14120f" stroke-width="1.6" stroke-linecap="round"/>' +
+        '<path d="M36 4 L12 35 H28 L22 60 L52 25 H35 L43 4 Z" fill="#ff6b57" stroke="#ff6b57" stroke-width="5" stroke-linejoin="round"/>' +
+        '<g class="f-eyes"><g fill="#141830"><ellipse cx="26" cy="29.5" rx="3" ry="3.7"/><ellipse cx="36" cy="29.5" rx="3" ry="3.7"/></g>' +
+        '<g fill="#f6ecd6"><circle cx="27" cy="28.2" r="1.05"/><circle cx="37" cy="28.2" r="1.05"/></g></g>' +
+        '<path class="f-mouth" d="M28.6 34.6 q2.4 1.9 4.8 0" fill="none" stroke="#141830" stroke-width="1.6" stroke-linecap="round"/>' +
       "</g></svg>";
   }
 
